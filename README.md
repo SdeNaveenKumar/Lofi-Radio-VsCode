@@ -1,33 +1,63 @@
-🎧 Lofi Radio for VS Code
-Turn your editor into a cozy workspace.
+# 🎧 Lofi Radio for VS Code
+A minimalist, distraction-free lofi radio player that lives in your status bar. Stay in the zone without ever leaving your editor.
 
-Lofi Radio brings curated lofi beats directly into your VS Code status bar. No need to switch windows or manage heavy browser tabs. Just one click, and you're in the flow state.
+## ✨ Features
+- **🚫 No Ads:** Pure music, zero interruptions.
+- **🪶 Lightweight:** Minimal resource usage compared to keeping a browser tab open.
+- **🔘 One-Click Control:** Play or pause directly from the VS Code status bar.
+- **⌨️ Keyboard Shortcut:** Toggle music with `Ctrl+Alt+L` (`Cmd+Opt+L` on macOS).
+- **🛠️ Multi-Engine Support:** Works out of the box if you have `mpv`, `ffplay`, or `vlc` installed.
 
-✨ Features
-One-Click Play: A dedicated "Lofi Radio" button in your status bar.
+## 🛠️ How I Made It
+This extension was built to solve a personal problem: I wanted a way to listen to lofi beats without the overhead of a web browser or the distraction of YouTube ads.
 
-Background Play: Music runs seamlessly in a lightweight webview while you code.
+- **Stack:** Built using pure JavaScript (ES Modules) and the VS Code Extension API.
+- **Logic:** It uses a "Player Resolver" system that automatically detects media players already on your system (`mpv`, `ffplay`, or `cvlc`) to stream the audio. 
+- **Simplicity:** By leveraging existing system tools, the extension stays incredibly small and doesn't bundle heavy Electron-based players.
 
-Distraction Free: No ads, no complex UI—just the music you need to focus.
+## 🚀 Installation & Setup
 
-ES6 Powered: Built with a modern, lightweight codebase for optimal performance.
+### Requirements
+Ensure you have at least one of these media players installed on your system:
+- [mpv](https://mpv.io/) (Recommended)
+- [FFmpeg](https://ffmpeg.org/) (for `ffplay`)
+- [VLC](https://www.videolan.org/) (for `cvlc`)
 
-🚀 How to Use
-Look for the $(play) Lofi Radio button in the bottom-right status bar.
+### Direct Installation (Quickest Method)
+If you already have the `.vsix` file:
+1.  Open **VS Code**.
+2.  Go to the **Extensions** view (`Cmd+Shift+X` or `Ctrl+Shift+X`).
+3.  Click the **...** (More Actions) menu in the top right of the Extensions panel.
+4.  Select **Install from VSIX...**.
+5.  Choose the `lofi-radio-0.0.1.vsix` file from your downloads.
 
-Click to start the stream. A small "Now Playing" indicator will appear.
+### Manual Installation (From Source)
+Since this is a custom-built tool, you can also build it yourself using the VS Code Extension Manager (`vsce`):
 
-Click again to Stop whenever you need a break.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/lofi-radio-vscode.git
+   cd lofi-radio-vscode
+   ```
 
-🎨 The Aesthetic
-This extension was designed for developers who appreciate a minimalist setup. Whether it’s late-night debugging or early-morning architecture sessions, Lofi Station is your perfect coding companion.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-🛠 Installation
+3. **Package the extension:**
+   ```bash
+   npx vsce package
+   ```
 
-Open VS Code
+4. **Install the generated `.vsix` file:**
+   ```bash
+   code --install-extension lofi-radio-0.0.1.vsix
+   ```
 
-Go to Extensions (Cmd+Shift+X)
+## 🎮 How to Use
+- Click the **$(play) Lofi Radio** button in the bottom right of your status bar.
+- Use the command palette (`Cmd+Shift+P` or `Ctrl+Shift+P`) and search for **Lofi Radio: Toggle Play/Stop**.
 
-Search for "Lofi Station"
-
-Click Install
+---
+Designed by Naveen Kumar with ❤️ for developers who love the flow state.
