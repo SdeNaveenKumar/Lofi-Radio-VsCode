@@ -1,0 +1,71 @@
+{
+  "name": "lofi-radio",
+  "displayName": "Lofi Radio",
+  "publisher": "naveenkumar",
+  "description": "A minimalist lofi radio player right in your status bar. Stay in the flow without leaving your editor.",
+  "version": "0.0.1",
+  "type": "module",
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": ["*"],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lofi-radio.togglePlay",
+        "title": "Lofi Radio: Toggle Play/Stop"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "lofi-radio.togglePlay",
+        "key": "ctrl+alt+l",
+        "mac": "cmd+alt+l"
+      }
+    ],
+    "configuration": {
+      "title": "Lofi Radio",
+      "properties": {
+        "lofiRadio.backgroundColor": {
+          "type": "string",
+          "default": "#1e1e1e",
+          "description": "Background color of the player panel (hex color)"
+        },
+        "lofiRadio.textColor": {
+          "type": "string",
+          "default": "#ffffff",
+          "description": "Text color of the player panel (hex color)"
+        },
+        "lofiRadio.accentColor": {
+          "type": "string",
+          "default": "#007acc",
+          "description": "Accent color for buttons and sliders (hex color)"
+        },
+        "lofiRadio.defaultVolume": {
+          "type": "number",
+          "default": 70,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Default volume level (0-100)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.110.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "eslint": "^9.39.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
