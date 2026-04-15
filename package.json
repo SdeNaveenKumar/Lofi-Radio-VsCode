@@ -1,7 +1,7 @@
 {
   "name": "lofi-radio",
   "displayName": "Lofi Radio",
-  "icon": "icon.svg",
+  "icon": "icon.png",
   "publisher": "naveenkumar",
   "repository": {
     "type": "git",
