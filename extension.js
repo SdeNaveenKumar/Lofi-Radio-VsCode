@@ -1,5 +1,6 @@
 import { window, commands, StatusBarAlignment, workspace } from 'vscode';
 import { spawn } from 'node:child_process';
+import { platform } from 'node:os';
 
 let myStatusBarItem;
 let isPlaying = false;
@@ -14,7 +15,18 @@ let currentStreamIndex = 0;
 
 function hasCommand(command) {
     return new Promise((resolve) => {
-        const check = spawn('sh', ['-lc', `command -v ${command}`]);
+        let check;
+        
+        if (platform() === 'win32') {
+            // Windows: use 'where' command
+            check = spawn('cmd.exe', ['/c', `where ${command}`], {
+                windowsHide: true
+            });
+        } else {
+            // Unix/macOS/Linux: use 'command -v'
+            check = spawn('sh', ['-lc', `command -v ${command}`]);
+        }
+        
         check.on('close', (code) => resolve(code === 0));
         check.on('error', () => resolve(false));
     });
@@ -133,7 +145,13 @@ function stopMusic() {
     myStatusBarItem.text = `$(play) Lofi Radio`;
 
     if (playerProcess && !playerProcess.killed) {
-        playerProcess.kill('SIGTERM');
+        if (platform() === 'win32') {
+            // Windows: use SIGTERM (0) or process termination
+            playerProcess.kill();
+        } else {
+            // Unix/macOS/Linux: use SIGTERM
+            playerProcess.kill('SIGTERM');
+        }
     }
 
     playerProcess = undefined;
@@ -141,6 +159,10 @@ function stopMusic() {
 
 export function deactivate() {
     if (playerProcess && !playerProcess.killed) {
-        playerProcess.kill('SIGTERM');
+        if (platform() === 'win32') {
+            playerProcess.kill();
+        } else {
+            playerProcess.kill('SIGTERM');
+        }
     }
 }
