@@ -1,7 +1,12 @@
 {
   "name": "lofi-radio",
   "displayName": "Lofi Radio",
+  "icon": "icon.svg",
   "publisher": "naveenkumar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SdeNaveenKumar/Lofi-Radio-VsCode.git"
+  },
   "description": "A minimalist lofi radio player right in your status bar. Stay in the flow without leaving your editor.",
   "version": "0.0.1",
   "type": "module",
